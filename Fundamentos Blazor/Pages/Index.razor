@@ -1,5 +1,8 @@
 ﻿@page "/"
 
+@using Fundamentos_Blazor.Data
+@inject IDependencyDemo DependencyDemo
+
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
@@ -13,3 +16,5 @@ Welcome to your new app.
 </div>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<p>La edad aleatoria es: @DependencyDemo.returnEdad() </p>

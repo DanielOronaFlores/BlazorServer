@@ -7,9 +7,20 @@ namespace Fundamentos_Blazor.Data
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+        private readonly IDependencyDemo dependencyDemo;
+
+        public WeatherForecastService(IDependencyDemo dependencyDemo)
+        {
+            this.dependencyDemo = dependencyDemo;
+        }
+
         public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate)
         {
-            return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            // Dependency injection demo
+            Random Random = new Random();
+            int edad = dependencyDemo.returnEdad();
+
+            return Task.FromResult(Enumerable.Range(1, edad).Select(index => new WeatherForecast
             {
                 Date = startDate.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
